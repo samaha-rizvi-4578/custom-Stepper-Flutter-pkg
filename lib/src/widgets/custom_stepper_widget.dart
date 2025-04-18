@@ -75,7 +75,7 @@ class CustomStepper extends StatelessWidget {
                   value: value,
                   minHeight: 8,
                   color: completedColor,
-                  backgroundColor: inactiveColor.withOpacity(0.3),
+                  backgroundColor: inactiveColor,
                 ),
               ),
             ),
@@ -127,7 +127,7 @@ class CustomStepper extends StatelessWidget {
                   value: value,
                   minHeight: 8,
                   color: completedColor,
-                  backgroundColor: inactiveColor.withOpacity(0.3),
+                  backgroundColor: inactiveColor,
                 );
               },
             ),
@@ -150,7 +150,7 @@ class CustomStepper extends StatelessWidget {
                   child: DottedLine(
                     color: isLineCompleted
                         ? completedColor
-                        : inactiveColor.withOpacity(0.4),
+                        : inactiveColor,
                   ),
                 ),
               );
@@ -182,7 +182,7 @@ class CustomStepper extends StatelessWidget {
                           boxShadow: isActive
                               ? [
                                   BoxShadow(
-                                    color: activeColor.withOpacity(0.5),
+                                    color: activeColor,
                                     blurRadius: 8,
                                     spreadRadius: 2,
                                   )
