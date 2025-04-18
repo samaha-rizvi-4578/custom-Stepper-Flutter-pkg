@@ -154,41 +154,42 @@ class CustomStepper extends StatelessWidget {
               return Column(
                 children: [
                   GestureDetector(
-                    onTap: () => onStepTapped?.call(index),
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: isStepCompleted
-                            ? completedColor
-                            : isActive
-                                ? activeColor
-                                : inactiveColor,
-                        shape: BoxShape.circle,
-                        boxShadow: isActive
-                            ? [
-                                BoxShadow(
-                                  color: activeColor.withOpacity(0.5),
-                                  blurRadius: 8,
-                                  spreadRadius: 2,
-                                )
-                              ]
-                            : [],
-                      ),
-                      child: Center(
-                        child: isStepCompleted
-                            ? const Icon(Icons.check, color: Colors.white)
-                            : Text(
-                                '${index + 1}',
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                      onTap: () => onStepTapped?.call(index),
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 700),
+                        curve: Curves.easeInOut,
+                        width: isActive ? 48 : 40,
+                        height: isActive ? 48 : 40,
+                        decoration: BoxDecoration(
+                          color: isStepCompleted
+                              ? completedColor
+                              : isActive
+                                  ? activeColor
+                                  : inactiveColor,
+                          shape: BoxShape.circle,
+                          boxShadow: isActive
+                              ? [
+                                  BoxShadow(
+                                    color: activeColor.withOpacity(0.5),
+                                    blurRadius: 8,
+                                    spreadRadius: 2,
+                                  )
+                                ]
+                              : [],
+                        ),
+                        child: Center(
+                          child: isStepCompleted
+                              ? const Icon(Icons.check, color: Colors.white)
+                              : Text(
+                                  '${index + 1}',
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
-                              ),
+                        ),
+                      )
                       ),
-                    ),
-                  ),
                   const SizedBox(height: 8),
                   Text(
                     steps[index],
