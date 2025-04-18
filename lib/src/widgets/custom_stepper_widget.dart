@@ -118,14 +118,22 @@ class CustomStepper extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
-            child: LinearProgressIndicator(
-              value: progress,
-              minHeight: 8,
-              color: completedColor,
-              backgroundColor: inactiveColor.withOpacity(0.3),
+            child: TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0, end: progress),
+              duration: const Duration(milliseconds: 700),
+              curve: Curves.easeInOut,
+              builder: (context, value, child) {
+                return LinearProgressIndicator(
+                  value: value,
+                  minHeight: 8,
+                  color: completedColor,
+                  backgroundColor: inactiveColor.withOpacity(0.3),
+                );
+              },
             ),
           ),
         ),
+
         const SizedBox(height: 24),
 
         // STEP INDICATORS WITH CONNECTORS
@@ -188,8 +196,7 @@ class CustomStepper extends StatelessWidget {
                                   ),
                                 ),
                         ),
-                      )
-                      ),
+                      )),
                   const SizedBox(height: 8),
                   Text(
                     steps[index],
