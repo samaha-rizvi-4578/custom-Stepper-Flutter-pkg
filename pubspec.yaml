@@ -1,10 +1,12 @@
 name: custom_stepper
-description: "A new Flutter package project."
+description: " A Flutter package that provides a customizable stepper widget with a progress bar."
 version: 0.0.1
-homepage:
+homepage: "https://github.com/samaha-rizvi-4578/custom-Stepper-Flutter-pkg"
+repository: "https://github.com/samaha-rizvi-4578/custom-Stepper-Flutter-pkg"
+
 
 environment:
-  sdk: ^3.6.1
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
@@ -21,7 +23,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  uses-material-design: true
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
