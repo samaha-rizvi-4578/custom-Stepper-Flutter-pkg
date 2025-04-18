@@ -175,6 +175,10 @@ class CustomStepper extends StatelessWidget {
                                   ? activeColor
                                   : inactiveColor,
                           shape: BoxShape.circle,
+                          border: Border.all(
+                            color: isActive ? inactiveColor : isStepCompleted ? completedColor : inactiveColor,
+                            width: 2,
+                          ),
                           boxShadow: isActive
                               ? [
                                   BoxShadow(
