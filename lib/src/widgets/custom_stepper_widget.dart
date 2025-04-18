@@ -22,24 +22,47 @@ class CustomStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     final isCompleted = currentStep >= steps.length;
 
-    if (isCompleted) {
-      //  ALL STEPS DONE UI
-      return Column(
-        children: [
-          const SizedBox(height: 24),
-          Icon(Icons.celebration_rounded, color: completedColor, size: 60),
-          const SizedBox(height: 16),
-          Text(
-            'All Steps Completed!',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+  if (isCompleted) {
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      // ✅ 100% Progress Bar
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: const Duration(milliseconds: 800),
+          builder: (context, value, child) => ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: LinearProgressIndicator(
+              value: value,
+              minHeight: 8,
               color: completedColor,
+              backgroundColor: inactiveColor.withOpacity(0.3),
             ),
           ),
-        ],
-      );
-    }
+        ),
+      ),
+
+      const SizedBox(height: 32),
+
+      // 🎉 COMPLETION ICON
+      Icon(Icons.celebration_rounded, color: completedColor, size: 60),
+
+      const SizedBox(height: 16),
+
+      Text(
+        'All Steps Completed!',
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: completedColor,
+        ),
+      ),
+    ],
+  );
+}
+
 
     // 🧱 NORMAL STEPPER UI
     final progress = (currentStep + 1) / steps.length;
