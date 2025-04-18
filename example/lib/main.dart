@@ -35,7 +35,9 @@ class _MyAppState extends State<MyApp> {
                 onStepTapped: (index) => setState(() => currentStep = index),
               ),
               const SizedBox(height: 40),
-              ElevatedButton(
+              //  if (currentStep < steps.length) then show next step button
+              if (currentStep < steps.length)
+                 ElevatedButton(
                 onPressed: _nextStep,
                 child: const Text('Next'),
               )
