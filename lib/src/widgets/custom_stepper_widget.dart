@@ -41,22 +41,23 @@ class CustomStepper extends StatelessWidget {
   final int currentStep;
   final List<String> steps;
   final Function(int)? onStepTapped;
-  final Color activeColor;
-  final Color completedColor;
-  final Color inactiveColor;
+  final List<Color>? colorSet;
 
   const CustomStepper({
     super.key,
     required this.currentStep,
     required this.steps,
     this.onStepTapped,
-    this.activeColor = Colors.indigo,
-    this.completedColor = Colors.green,
-    this.inactiveColor = Colors.grey,
+    this.colorSet,
   });
 
   @override
   Widget build(BuildContext context) {
+    // Default colors: [active, completed, inactive]
+    final Color activeColor = colorSet?.elementAt(0) ?? Colors.indigo;
+    final Color completedColor = colorSet?.elementAt(1) ?? Colors.green;
+    final Color inactiveColor = colorSet?.elementAt(2) ?? Colors.grey;
+
     final isCompleted = currentStep >= steps.length;
 
     if (isCompleted) {
@@ -174,7 +175,7 @@ class CustomStepper extends StatelessWidget {
                         boxShadow: isActive
                             ? [
                                 BoxShadow(
-                                  color: activeColor,
+                                  color: activeColor.withOpacity(0.5),
                                   blurRadius: 8,
                                   spreadRadius: 2,
                                 )
