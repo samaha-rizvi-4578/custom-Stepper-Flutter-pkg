@@ -1,6 +1,6 @@
 name: annimated_progress_stepper
 description: " A Flutter package that provides a customizable stepper widget with a progress bar."
-version: 0.0.1
+version: 1.0.0  #older 0.0.1
 homepage: "https://github.com/samaha-rizvi-4578/custom-Stepper-Flutter-pkg"
 repository: "https://github.com/samaha-rizvi-4578/custom-Stepper-Flutter-pkg"
 

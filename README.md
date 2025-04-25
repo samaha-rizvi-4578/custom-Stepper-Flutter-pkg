@@ -130,11 +130,11 @@ class _MyAppState extends State<MyApp> {
 
 ## Changelog
 
-### 1.1.0
+### 1.0.0
 - added color customization for active, completed, and inactive steps.
 - introduced customizable colorSet for flexible color options.
 
-### 1.0.0
+### 0.0.1
 - Initial release.
 
 ## License
