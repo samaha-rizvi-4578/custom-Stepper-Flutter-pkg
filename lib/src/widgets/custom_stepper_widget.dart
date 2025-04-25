@@ -63,7 +63,6 @@ class CustomStepper extends StatelessWidget {
       return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          //  100% Animated Progress Bar
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: TweenAnimationBuilder<double>(
@@ -80,10 +79,7 @@ class CustomStepper extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 32),
-
-          //  Celebration with Fade Transition
           AnimatedOpacity(
             opacity: 1,
             duration: const Duration(milliseconds: 600),
@@ -107,13 +103,11 @@ class CustomStepper extends StatelessWidget {
       );
     }
 
-    //  Stepper UI (default)
     final progress = (currentStep + 1) / steps.length;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // PROGRESS BAR
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: ClipRRect(
@@ -133,24 +127,18 @@ class CustomStepper extends StatelessWidget {
             ),
           ),
         ),
-
         const SizedBox(height: 24),
-
-        // STEP INDICATORS WITH CONNECTORS
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: List.generate(steps.length * 2 - 1, (i) {
             if (i.isOdd) {
               final beforeStep = i ~/ 2;
               final isLineCompleted = beforeStep < currentStep;
-
               return Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: DottedLine(
-                    color: isLineCompleted
-                        ? completedColor
-                        : inactiveColor,
+                    color: isLineCompleted ? completedColor : inactiveColor,
                   ),
                 ),
               );
@@ -162,58 +150,76 @@ class CustomStepper extends StatelessWidget {
               return Column(
                 children: [
                   GestureDetector(
-                      onTap: () => onStepTapped?.call(index),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 700),
-                        curve: Curves.easeInOut,
-                        width: isActive ? 48 : 40,
-                        height: isActive ? 48 : 40,
-                        decoration: BoxDecoration(
-                          color: isStepCompleted
-                              ? completedColor
-                              : isActive
-                                  ? activeColor
+                    onTap: () => onStepTapped?.call(index),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeInOut,
+                      width: isActive ? 48 : (isStepCompleted ? 30 : 16),
+                      height: isActive ? 48 : (isStepCompleted ? 30 : 16),
+                      decoration: BoxDecoration(
+                        color: isStepCompleted
+                            ? completedColor
+                            : isActive
+                                ? activeColor
+                                : inactiveColor,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: isActive
+                              ? inactiveColor
+                              : isStepCompleted
+                                  ? completedColor
                                   : inactiveColor,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: isActive ? inactiveColor : isStepCompleted ? completedColor : inactiveColor,
-                            width: 2,
-                          ),
-                          boxShadow: isActive
-                              ? [
-                                  BoxShadow(
-                                    color: activeColor,
-                                    blurRadius: 8,
-                                    spreadRadius: 2,
-                                  )
-                                ]
-                              : [],
+                          width: 2,
                         ),
-                        child: Center(
-                          child: isStepCompleted
-                              ? const Icon(Icons.check, color: Colors.white)
-                              : Text(
-                                  '${index + 1}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                        boxShadow: isActive
+                            ? [
+                                BoxShadow(
+                                  color: activeColor,
+                                  blurRadius: 8,
+                                  spreadRadius: 2,
+                                )
+                              ]
+                            : [],
+                      ),
+                      child: Center(
+                        child: isStepCompleted
+                            ? const Icon(Icons.check,
+                                color: Colors.white, size: 18)
+                            : Text(
+                                '${index + 1}',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize:
+                                      isActive ? 14 : (isStepCompleted ? 12 : 10),
                                 ),
-                        ),
-                      )),
-                  const SizedBox(height: 8),
-                  Text(
-                    steps[index],
-                    style: TextStyle(
-                      color: isActive
-                          ? activeColor
-                          : isStepCompleted
-                              ? completedColor
-                              : inactiveColor,
-                      fontWeight:
-                          isActive ? FontWeight.bold : FontWeight.normal,
+                              ),
+                      ),
                     ),
                   ),
+                  const SizedBox(height: 8),
+                  isStepCompleted || isActive
+                      ? AnimatedDefaultTextStyle(
+                          duration: const Duration(milliseconds: 400),
+                          style: TextStyle(
+                            color: isActive
+                                ? activeColor
+                                : isStepCompleted
+                                    ? completedColor
+                                    : inactiveColor,
+                            fontWeight: isActive
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                            fontSize: 11,
+                          ),
+                          child: Text(
+                            steps[index],
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        )
+                      : const Icon(Icons.circle, size: 6, color: Colors.grey),
                 ],
               );
             }
