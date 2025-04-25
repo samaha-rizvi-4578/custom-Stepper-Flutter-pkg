@@ -62,7 +62,7 @@ class _MyAppState extends State<MyApp> {
                 onStepTapped: (index) => setState(() => currentStep = index),
 
                 // Custom color set
-                colorSet: [Colors.pink, Colors.teal, Colors.black],
+                // colorSet: [Colors.pink, Colors.teal, Colors.black],
               ),
               const SizedBox(height: 30),
 
