@@ -175,7 +175,7 @@ class CustomStepper extends StatelessWidget {
                         boxShadow: isActive
                             ? [
                                 BoxShadow(
-                                  color: activeColor.withOpacity(0.5),
+                                  color: activeColor,
                                   blurRadius: 8,
                                   spreadRadius: 2,
                                 )
