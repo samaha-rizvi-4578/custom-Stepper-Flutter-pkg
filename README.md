@@ -2,6 +2,8 @@
 
 A customizable stepper widget for Flutter with animated step indicators, progress bar, dotted connectors, and customizable step validation. Perfect for building multi-step forms, onboarding processes, or wizard-style UIs, with added features like customizable step colors.
 
+#### link
+https://pub.dev/packages/annimated_progress_stepper
 ## Features
 
 - Animated step circles that grow when active.
