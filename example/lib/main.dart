@@ -60,10 +60,13 @@ class _MyAppState extends State<MyApp> {
                 currentStep: currentStep,
                 steps: steps,
                 onStepTapped: (index) => setState(() => currentStep = index),
+
+                // Custom color set
+                colorSet: [Colors.pink, Colors.teal, Colors.black],
               ),
               const SizedBox(height: 30),
 
-              /// 👇 Step-specific content
+              ///  Step-specific content
               _getStepContent(currentStep),
 
               const SizedBox(height: 40),
